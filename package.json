@@ -3,8 +3,8 @@
   "description": "An Aurelia client application.",
   "version": "0.1.0",
   "repository": {
-    "type": "???",
-    "url": "???"
+    "type": "git",
+    "url": "https://github.com/B3zo0/aurelia-redux.git"
   },
   "license": "MIT",
   "dependencies": {
