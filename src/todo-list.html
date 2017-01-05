@@ -1,0 +1,8 @@
+<template>
+  <require from='./todo'></require>
+  <section class="main">
+    <ul class='todo-list'>
+      <todo repeat.for='todo of todos' todo.bind='todo' delete-todo.call='deleteCallback($event)' complete-todo.call='completeCallback($event)'></todo>
+    </ul>
+  </section>
+</template>

@@ -2,12 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Aurelia</title>
-    <link href="https://fonts.googleapis.com/css?family=Passion+One:400,700|Roboto:300,400,500,700"
-        rel="stylesheet" type="text/css">
+    <title><%- htmlWebpackPlugin.options.metadata.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="<%- htmlWebpackPlugin.options.metadata.baseUrl %>">
+    <!-- imported CSS are concatenated and added automatically -->
   </head>
-
   <body aurelia-app="main">
-    <script src="scripts/vendor-bundle.js" data-main="aurelia-bootstrapper"></script>
+    <div class="splash">
+      <div class="message"><%- htmlWebpackPlugin.options.metadata.title %></div>
+      <i class="fa fa-spinner fa-spin"></i>
+    </div>
+    <% if (htmlWebpackPlugin.options.metadata.ENV === 'development') { %>
+    <!-- Webpack Dev Server reload -->
+    <script src="/webpack-dev-server.js"></script>
+    <% } %>
   </body>
 </html>

@@ -1,0 +1,19 @@
+<template>
+  <require from='./todo-add'></require>
+  <require from='./todo-list'></require>
+  <require from='./todo-footer'></require>
+  <div>
+    <section class="todoapp">
+		  <header id="header">
+			  <h1>Todos</h1>
+          <div class="imgContainer">
+            <img src="/src/assets/sensenetlogo.png">
+            <img src="/src/assets/aurelia-logo.png"> 
+          </div>
+        <todo-add add-callback.call='addClicked($event)'></todo-add>
+      </header>
+      <todo-list todos.bind='visibleTodos' delete-callback.call='deleteTodo($event)' complete-callback.call='completeTodo($event)' if.bind='visibleTodos.length'></todo-list>
+      <todo-footer filter.bind='visibilityFilter' visibility-callback.call='filterChanged($event)'></todo-footer>
+    </section>
+  </div>
+</template>
