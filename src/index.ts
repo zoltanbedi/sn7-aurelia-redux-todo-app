@@ -30,7 +30,6 @@ export class TodoIndex {
 
   update() {
     const state = this.todoStore.getState();
-    console.log(state);
     this.visibleTodosProp = this.mapStateToProps(state, this.visibilityFilter);
     this.visibleTodos = this.visibleTodosProp.collection;
   }
