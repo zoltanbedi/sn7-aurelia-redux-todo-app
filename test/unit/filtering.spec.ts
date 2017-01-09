@@ -81,7 +81,7 @@ describe('#filtering', () => {
             Id: 5145,
             Status: ['active'],
             Type: 'Task'
-        }
+        };
         it('should return the states first item by all filter', () => {
             expect(getVisibleTodos(state, 'All')[0]).toEqual(task);
         });
