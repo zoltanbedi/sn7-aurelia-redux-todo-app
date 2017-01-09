@@ -90,7 +90,7 @@ let config = generateConfig(
    */
 
   ENV === 'test' || ENV === 'development' ? 
-    envDev(ENV !== 'test' ? {} : {devtool: 'inline-source-map'}) :
+    envDev(ENV === 'test' ? {} : {devtool: 'inline-source-map'}) :
     envProd({ /* devtool: '...' */ }),
 
   aurelia({root: rootDir, src: srcDir, title: title, baseUrl: baseUrl}),
