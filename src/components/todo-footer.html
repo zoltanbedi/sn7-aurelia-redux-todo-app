@@ -1,0 +1,15 @@
+<template>
+  <footer class="footer">
+    <ul class="filters">
+      <li>
+        <a class="${filter === 'All' ? 'selected' : ''}" click.delegate='visibilityCallback("All")'>All</a>
+      </li>
+      <li>
+        <a class="${filter === 'Completed' ? 'selected' : ''}" click.delegate='visibilityCallback("Completed")'>Completed</a>
+      </li>
+      <li>
+        <a class="${filter === 'Active' ? 'selected' : ''}" click.delegate='visibilityCallback("Active")'>Active</a>
+      </li>
+    </ul>
+  </footer>
+</template>

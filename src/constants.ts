@@ -1,0 +1,1 @@
+export const SN_DEMO_SITE_URL: string = '/workspaces/Project/budapestprojectworkspace/Tasks';

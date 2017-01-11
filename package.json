@@ -1,6 +1,6 @@
 {
   "name": "sn7-aurelia-redux-todo-app",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Todo app with Aurelia and Redux built upon Sense/Net ECM",
   "main": "dist/main.js",
   "scripts": {
