@@ -7,13 +7,25 @@ These two courses are extremely helpful and essential, recommended for everyone 
 
 ## Quick start
 
-```
-$ git clone https://github.com/B3zo0/sn7-aurelia-redux-todo-app.git
-$ cd sn7-aurelia-redux-todo-app
-$ npm install
-$ npm start
-```
+Before you start, make sure you have a recent version of [NodeJS](http://nodejs.org/) environment *>=6.0* with NPM 3 or Yarn.
 
+```shell
+- git clone https://github.com/B3zo0/sn7-aurelia-redux-todo-app.git
+- cd sn7-aurelia-redux-todo-app
+- npm install # or: yarn install
+- npm start # or: yarn start
+```
+This command starts the webpack development server that serves the build bundles.
+You can now browse the app at http://localhost:8080 (or the next available port, notice the output of the command). Changes in the code
+will automatically build and reload the app.
+
+### Running with Hot Module Reload
+
+If you wish to try out the experimental Hot Module Reload, you may run your application with the following command:
+
+```shell
+npm start -- webpack.server.hmr
+```
 ## Settings
 
 To use this example you'll need a Sense/Net ECM portal. To connect the app with the portal set your site's url as the app's siteUrl
@@ -54,12 +66,23 @@ If you are not familiar with Sense/Net's permission system check the following w
 
 This project was generated with [skeleton-typescript-webpack](https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-typescript-webpack).
 
-## Development server
-Run `npm start` for a dev server. Navigate to `http://localhost:9000/`. The app will automatically reload if you change any of the source files.
-
 ## Build
 
-Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory. Use `build:prod` flag for a production build.
+To build an optimized, minified production bundle (output to /dist) execute:
+
+```shell
+npm start -- build
+```
+
+To build 
+
+To test either the development or production build execute:
+
+```shell
+npm start -- serve
+```
+
+The production bundle includes all files that are required for deployment.
 
 ## Running unit tests
 

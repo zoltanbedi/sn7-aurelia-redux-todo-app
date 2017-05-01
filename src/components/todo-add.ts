@@ -8,10 +8,10 @@ import { customElement } from 'aurelia-framework';
 export class TodoAdd {
   private todoName: string;
 
-  createContent(){
+  createContent(): Content {
     let content = Content.Create('Task', {
-        Type: 'Task',
-        DisplayName: this.todoName
+      Type: 'Task',
+      DisplayName: this.todoName
     });
     content['Status'] = 'active';
     return content;

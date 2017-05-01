@@ -5,19 +5,19 @@ import { SetSiteUrl } from 'sn-client-js';
 import { listByFilter } from './reducers/filtering';
 
 class TodoStore {
-    constructor() {
-        SetSiteUrl('https://demo06.demo.sensenet.com');
-    }
+  constructor() {
+    SetSiteUrl('https://demo06.demo.sensenet.com');
+  }
 
-    configureStore() {
-        const collection = Reducers.collection;
-        const myReducer = combineReducers({
-            collection,
-            listByFilter
-        });
+  configureStore() {
+    const collection = Reducers.collection;
+    const myReducer = combineReducers({
+      collection,
+      listByFilter
+    });
 
-        return Store.configureStore(myReducer);
-    }
+    return Store.configureStore(myReducer);
+  }
 
 }
 

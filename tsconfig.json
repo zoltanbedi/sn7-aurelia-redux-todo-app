@@ -6,17 +6,16 @@
     "experimentalDecorators": true,
     "strictNullChecks": false,
     "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceRoot": "src",
     "allowJs": true,
+    "compileOnSave": false,
     "lib": [
       "es2017", "dom"
     ]
   },
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true
-  },
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "static"
   ]
 }

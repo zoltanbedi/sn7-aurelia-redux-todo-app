@@ -3,8 +3,8 @@ import { Reducers } from 'sn-redux';
 
 export const createList = (filter) => {
   const handleToggle = (state, action, filter) => {
-    const {result: toggleId, entities} = action.response;
-    const {Status} = entities.collection[toggleId];
+    const { result: toggleId, entities } = action.response;
+    const { Status } = entities.collection[toggleId];
     const shouldRemove = (
       (Status.indexOf('active') === - 1 && filter === 'Active') ||
       (Status.indexOf('completed') === - 1 && filter === 'Completed')

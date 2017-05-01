@@ -1,4 +1,4 @@
-import {customElement, bindable } from 'aurelia-framework';
+import { customElement, bindable } from 'aurelia-framework';
 import { reduxStore } from '../store';
 import { Actions, Store } from 'sn-redux';
 

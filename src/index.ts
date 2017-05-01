@@ -2,7 +2,7 @@ import { reduxStore } from './store';
 import { Actions } from 'sn-redux';
 import { ODataApi } from 'sn-client-js';
 import { getVisibleTodos } from './reducers/filtering';
-import { SN_DEMO_SITE_URL } from './constants'
+import { SN_DEMO_SITE_URL } from './constants';
 
 export class TodoIndex {
   private visibleTodos;
