@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title><%- htmlWebpackPlugin.options.metadata.title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="<%- htmlWebpackPlugin.options.metadata.baseUrl %>">
-    <!-- imported CSS are concatenated and added automatically -->
-  </head>
-  <body aurelia-app="main">
-    <div class="splash">
-      <div class="message"><%- htmlWebpackPlugin.options.metadata.title %></div>
-      <i class="fa fa-spinner fa-spin"></i>
-    </div>
-    <% if (htmlWebpackPlugin.options.metadata.server) { %>
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    <%- htmlWebpackPlugin.options.metadata.title %>
+  </title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <base href="<%- htmlWebpackPlugin.options.metadata.baseUrl %>">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <style>
+    .loader {
+      height: 100px;
+      width: 100%;
+      text-align: center;
+      display: inline-block;
+      vertical-align: top;
+      position: fixed;
+      bottom: 20%;
+    }
+
+    h1 {
+      text-align: center;
+      bottom: 50%;
+      position: fixed;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body aurelia-app="main">
+  <h1>
+    <%- htmlWebpackPlugin.options.metadata.title %> is loading</h1>
+  <div class="loader loader--style1">
+    <img style="width: 70px;"
+         src="/loader.svg">
+  </div>
+  <% if (htmlWebpackPlugin.options.metadata.server) { %>
     <!-- Webpack Dev Server reload -->
     <script src="/webpack-dev-server.js"></script>
     <% } %>
-  </body>
+</body>
+
 </html>

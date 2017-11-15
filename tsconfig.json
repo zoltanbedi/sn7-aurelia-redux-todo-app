@@ -1,21 +1,37 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
+    "sourceMap": true,
     "target": "es5",
-    "module": "es2015",
+    "module": "amd",
+    "declaration": false,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictNullChecks": false,
-    "moduleResolution": "node",
-    "sourceRoot": "src",
     "allowJs": true,
-    "compileOnSave": false,
+    "moduleResolution": "node",
     "lib": [
-      "es2017", "dom"
+      "es2017",
+      "dom"
     ]
   },
+  "files": [
+    "./node_modules/@types/webpack/index.d.ts"
+  ],
   "exclude": [
     "node_modules",
-    "dist",
-    "static"
-  ]
+    "aurelia_project"
+  ],
+  "filesGlob": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "./custom_typings/**/*.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }

@@ -8,14 +8,20 @@ module.exports = {
       default: 'nps test.karma',
       karma: {
         default: series(
-          rimraf('test/karma-coverage'),
+          rimraf('test/coverage-karma'),
           'karma start test/karma.conf.js'
         ),
-        watch: 'karma start test/karma.conf.js --no-single-run',
-        debug: 'karma start test/karma.conf.js --no-single-run --debug',
+        watch: 'karma start test/karma.conf.js --auto-watch --no-single-run',
+        debug: 'karma start test/karma.conf.js --auto-watch --no-single-run --debug'
+      },
+
+      lint: {
+        default: 'eslint src',
+        fix: 'eslint --fix'
       },
       all: concurrent({
-        browser: series.nps('test.karma', 'e2e')
+        browser: series.nps('test.karma'),
+        lint: 'nps test.lint'
       })
     },
     e2e: {
@@ -62,11 +68,11 @@ module.exports = {
         production: {
           inlineCss: series(
             'nps webpack.build.before',
-            'webpack --progress -p --env.production'
+            crossEnv('NODE_ENV=production webpack --progress -p --env.production')
           ),
           default: series(
             'nps webpack.build.before',
-            'webpack --progress -p --env.production --env.extractCss'
+            crossEnv('NODE_ENV=production webpack --progress -p --env.production --env.extractCss')
           ),
           serve: series.nps(
             'webpack.build.production',
@@ -75,9 +81,9 @@ module.exports = {
         }
       },
       server: {
-        default: `webpack-dev-server -d --devtool '#source-map' --inline --env.server`,
-        extractCss: `webpack-dev-server -d --devtool '#source-map' --inline --env.server --env.extractCss`,
-        hmr: `webpack-dev-server -d --devtool '#source-map' --inline --hot --env.server`
+        default: `webpack-dev-server -d --inline --env.server`,
+        extractCss: `webpack-dev-server -d --inline --env.server --env.extractCss`,
+        hmr: `webpack-dev-server -d --inline --hot --env.server`
       },
     },
     serve: 'http-server dist --cors',

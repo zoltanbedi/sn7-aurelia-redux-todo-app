@@ -10,6 +10,6 @@ yarn-error.log
 /.awcache
 /electron.js*
 /release
-/test/coverage
+/test/coverage*
 yarn.lock
 debug.log

@@ -1,0 +1,16 @@
+<template>
+    <ux-form class="fs-form fs-form-full">
+      <ux-field label="Username">
+        <ux-input placeholder="BuiltIn\Administrator"
+                  value.bind="userName"></ux-input>
+      </ux-field>
+  
+      <ux-field label="Password">
+        <ux-input type="password"
+                  value.bind="password"></ux-input>
+      </ux-field>
+  
+      <ux-button click.delegate="submit()">Submit</ux-button>
+  
+    </ux-form>
+  </template>
