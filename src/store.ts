@@ -1,24 +1,27 @@
-import 'rxjs';
-import { combineReducers } from 'redux';
-import { Store, Reducers } from 'sn-redux';
-import { SetSiteUrl } from 'sn-client-js';
-import { listByFilter } from './reducers/filtering';
+import { Action, AnyAction, Dispatch, Store, Unsubscribe } from 'redux';
 
-class TodoStore {
-  constructor() {
-    SetSiteUrl('https://demo06.demo.sensenet.com');
+export class TodoStore<S> implements Store<S> {
+
+  static instance: TodoStore<any>;
+
+  private store: Store<S>;
+
+  constructor(store: Store<any>) {
+    TodoStore.instance = this;
+    this.store = store;
   }
 
-  configureStore() {
-    const collection = Reducers.collection;
-    const myReducer = combineReducers({
-      collection,
-      listByFilter
-    });
+  dispatch: Dispatch<S> = this.store.dispatch;
 
-    return Store.configureStore(myReducer);
+  getState(): S {
+    return this.store.getState();
   }
 
+  subscribe(listener: () => void): Unsubscribe {
+    return this.store.subscribe(listener);
+  }
+
+  replaceReducer(nextReducer: (state: S, action: AnyAction) => S): void {
+    return this.store.replaceReducer(nextReducer);
+  }
 }
-
-export const reduxStore = new TodoStore().configureStore();

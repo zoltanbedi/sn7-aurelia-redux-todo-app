@@ -1,10 +1,14 @@
-/// <reference types="aurelia-loader-webpack/src/webpack-hot-interface"/>
-import '../static/styles/styles.css';
+import { JwtService } from '@sensenet/authentication-jwt';
+import { Repository } from '@sensenet/client-core';
+import { Reducers, Store } from '@sensenet/redux';
 import { Aurelia } from 'aurelia-framework';
-import environment from './environment';
 import { PLATFORM } from 'aurelia-pal';
-import { Repository } from "sn-client-js";
 import * as Bluebird from 'bluebird';
+import { combineReducers } from 'redux';
+import 'reset-css';
+import { TodoStore } from 'store';
+import environment from './environment';
+import { listByFilter } from './reducers/filtering';
 
 // remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
 Bluebird.config({ warnings: { wForgottenReturn: false } });
@@ -14,21 +18,31 @@ export function configure(aurelia: Aurelia) {
     .standardConfiguration()
     .feature(PLATFORM.moduleName('resources/index'))
     .plugin(PLATFORM.moduleName('aurelia-validation'))
-    .plugin(PLATFORM.moduleName('aurelia-ux'));
+    .plugin(PLATFORM.moduleName('@aurelia-ux/core'))
+    .plugin(PLATFORM.moduleName('@aurelia-ux/components'))
+    .plugin(PLATFORM.moduleName('@aurelia-ux/icons'));
 
-  // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
-  // aurelia.use.plugin(PLATFORM.moduleName('aurelia-html-import-template-loader'));
-  aurelia.container.registerSingleton(Repository.BaseRepository, () => new Repository.SnRepository({
-    RepositoryUrl: 'https://manatee.sensenet.com/',
-    ODataToken: 'OData.svc',
-    JwtTokenKeyTemplate: 'my-${tokenName}-token-for-${siteName}',
-    JwtTokenPersist: 'session',
-    DefaultSelect: ['DisplayName', 'Icon'],
-    RequiredSelect: ['Id', 'Type', 'Path', 'Name'],
-    DefaultMetadata: 'no',
-    DefaultInlineCount: 'allpages',
-    DefaultExpand: [],
-    DefaultTop: 1000
+  const repository = new Repository({
+    repositoryUrl: 'https://dmsservice.demo.sensenet.com',
+    oDataToken: 'OData.svc',
+    sessionLifetime: 'expiration',
+    defaultSelect: ['DisplayName', 'Icon'],
+    requiredSelect: ['Id', 'Type', 'Path', 'Name'],
+    defaultMetadata: 'no',
+    defaultInlineCount: 'allpages',
+    defaultExpand: [],
+    defaultTop: 1000
+  });
+  const jwtService = new JwtService(repository);
+
+  aurelia.container.registerSingleton(Repository, () => repository);
+
+  aurelia.container.registerSingleton(TodoStore, () => Store.createSensenetStore({
+    repository,
+    rootReducer: combineReducers({
+      sensenet: Reducers.sensenet,
+      listByFilter
+    })
   }));
 
   if (environment.debug) {

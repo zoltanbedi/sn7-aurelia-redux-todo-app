@@ -1,7 +1,9 @@
-import { ValidationControllerFactory, ValidationRules, ValidationController } from 'aurelia-validation';
-import { Router } from 'aurelia-router';
+import { Repository } from '@sensenet/client-core';
+import { Actions, Reducers } from '@sensenet/redux';
 import { autoinject } from 'aurelia-framework';
-import { Repository } from "sn-client-js";
+import { Router } from 'aurelia-router';
+import { ValidationController, ValidationControllerFactory, ValidationRules } from 'aurelia-validation';
+import { TodoStore } from 'store';
 
 @autoinject
 export class Login {
@@ -11,23 +13,18 @@ export class Login {
 
   constructor(controllerFactory: ValidationControllerFactory,
     private router: Router,
-    private snService: Repository.BaseRepository) {
+    private repository: Repository,
+    private store: TodoStore<any>) {
     this.controller = controllerFactory.createForCurrentScope();
   }
 
   submit() {
-
     this.controller.validate().then((value) => {
       if (!value.valid) {
         return;
       }
-      const success = this.snService.Authentication.Login(this.userName, this.password)
-        .subscribe(success => {
-          if (success) {
-            this.router.navigate('/');
-          }
-        }, error => console.log('Error in login:' + error));
-
+      this.store.dispatch(Actions.userLogin(this.userName, this.password));
+      console.log(this.store.getState());
     });
   }
 

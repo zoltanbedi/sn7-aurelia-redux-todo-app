@@ -1,27 +1,20 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": ".",
-    "sourceMap": true,
     "target": "es5",
-    "module": "amd",
-    "declaration": false,
-    "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "removeComments": true,
+    "module": "esnext",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowJs": true,
     "moduleResolution": "node",
+    "sourceRoot": "src",
+    "sourceMap": true,
+    "allowJs": true,
+    "baseUrl": "src",
+    "skipLibCheck": true,
     "lib": [
-      "es2017",
-      "dom"
+      "es2017", "dom"
     ]
   },
-  "files": [
-    "./node_modules/@types/webpack/index.d.ts"
-  ],
   "exclude": [
     "node_modules",
     "aurelia_project"

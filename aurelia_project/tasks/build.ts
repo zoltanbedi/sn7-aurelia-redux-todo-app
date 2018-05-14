@@ -2,21 +2,29 @@ import * as webpackConfig from '../../webpack.config';
 import * as webpack from 'webpack';
 import * as project from '../aurelia.json';
 import {CLIOptions, Configuration} from 'aurelia-cli';
+import * as gulp from 'gulp';
+import configureEnvironment from './environment';
+import * as del from 'del';
 
+const analyze = CLIOptions.hasFlag('analyze');
 const buildOptions = new Configuration(project.build.options);
-const isProd = CLIOptions.getEnvironment() === 'prod';
+const production = CLIOptions.getEnvironment() === 'prod';
 const server = buildOptions.isApplicable('server');
 const extractCss = buildOptions.isApplicable('extractCss');
 const coverage = buildOptions.isApplicable('coverage');
 
 const config = webpackConfig({
-  isProd, server, extractCss, coverage
+  production, server, extractCss, coverage, analyze
 });
-const compiler = webpack(config);
+const compiler = webpack(<any>config);
 
-function build(done) {
-  compiler.run(onBuild);
-  compiler.plugin('done', () => done());
+function buildWebpack(done) {
+  if (CLIOptions.hasFlag('watch')) {
+    compiler.watch({}, onBuild);
+  } else {
+    compiler.run(onBuild);
+    compiler.plugin('done', () => done());
+  }
 }
 
 function onBuild(err, stats) {
@@ -29,7 +37,18 @@ function onBuild(err, stats) {
   }
 }
 
+function clearDist() {
+  return del([config.output.path]);
+}
+
+const build = gulp.series(
+  clearDist,
+  configureEnvironment,
+  buildWebpack
+);
+
 export {
   config,
+  buildWebpack,
   build as default
 };

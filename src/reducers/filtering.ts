@@ -1,16 +1,15 @@
+import { Reducers } from '@sensenet/redux';
 import { combineReducers } from 'redux';
-import { Reducers } from 'sn-redux';
 
 export const createList = (filter) => {
   const handleToggle = (state, action, filter) => {
-    const { result: toggleId, entities } = action.response;
-    const { Status } = entities.collection[toggleId];
+    const { Id, Status } = action.response;
     const shouldRemove = (
-      (Status.indexOf('active') === - 1 && filter === 'Active') ||
-      (Status.indexOf('completed') === - 1 && filter === 'Completed')
+      (Status[0] === 'active' && filter !== 'active' && filter !== 'all') ||
+      (Status[0] === 'completed' && filter !== 'completed' && filter !== 'all')
     );
     return shouldRemove ?
-      state.filter(Id => Id !== toggleId) :
+      state.filter(id => id !== Id) :
       state;
   };
   const ids = (state = [], action) => {
@@ -22,7 +21,8 @@ export const createList = (filter) => {
       case 'UPDATE_CONTENT_SUCCESS':
         return handleToggle(state, action, filter);
       case 'DELETE_CONTENT_SUCCESS':
-        return [...state.slice(0, action.index), ...state.slice(action.index + 1)];
+        const index = state.indexOf(action.id);
+        return [...state.slice(0, index), ...state.slice(index + 1)];
       default:
         return state;
     }
@@ -58,15 +58,26 @@ export const createList = (filter) => {
   });
 };
 
+
+const visibilityFilter = (state = 'All', action) => {
+  switch (action.type) {
+    case 'SET_VISIBILITY_FILTER':
+      return action.filter;
+    default:
+      return state;
+  }
+};
+
 export const listByFilter = combineReducers({
-  All: createList('All'),
-  Active: createList('Active'),
-  Completed: createList('Completed')
+  All: createList('all'),
+  Active: createList('active'),
+  Completed: createList('completed'),
+  VisibilityFilter: visibilityFilter
 });
 
 export const getVisibleTodos = (state, filter) => {
   const ids = Reducers.getIds(state.listByFilter[filter]);
-  return ids.map(Id => Reducers.getContent(state.collection.byId, Id));
+  return ids.map(Id => Reducers.getContent(state.sensenet.children.entities, Id));
 };
 
 export const getIsFetching = (state, filter) =>
@@ -74,3 +85,13 @@ export const getIsFetching = (state, filter) =>
 
 export const getErrorMessage = (state, filter) =>
   Reducers.getError(state.listByFilter[filter]);
+
+export const getVisibilityFilter = (state) =>
+  state.sensenet.children.filter;
+
+export const setVisibilityFilter = filter => {
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter
+  };
+};

@@ -1,5 +1,5 @@
 {
-  "name": "todo",
+  "name": "Todo-SN-Redux-Aurelia",
   "type": "project:application",
   "bundler": {
     "id": "webpack",
@@ -9,7 +9,7 @@
     "options": {
       "server": "dev",
       "extractCss": "prod",
-      "coverage": "dev"
+      "coverage": false
     }
   },
   "platform": {
@@ -35,9 +35,9 @@
     "fileExtension": ".html"
   },
   "cssProcessor": {
-    "id": "sass",
-    "displayName": "Sass",
-    "fileExtension": ".scss"
+    "id": "none",
+    "displayName": "None",
+    "fileExtension": ".css"
   },
   "editor": {
     "id": "vscode",
@@ -45,13 +45,13 @@
   },
   "unitTestRunner": [
     {
-      "id": "karma",
-      "displayName": "Karma"
+      "id": "jest",
+      "displayName": "Jest"
     }
   ],
   "integrationTestRunner": {
-    "id": "protractor",
-    "displayName": "Protractor"
+    "id": "none",
+    "displayName": "None"
   },
   "paths": {
     "root": "src",

@@ -1,0 +1,32 @@
+<template>
+  <!-- <require from='./todo-add'></require> -->
+  <require from='./todo-list.html'></require>
+  <require from='./todo-footer.html'></require>
+
+  <ux-grid fluid
+           columns.one-time="4"
+           style="grid-template-areas:'. b c .''. a a .'; height: 100vh;">
+    <ux-grid-cell align-self-middle
+                  style="grid-area: b">
+      <img src="/sensenetlogo.png"
+           style="width:80%">
+    </ux-grid-cell>
+    <ux-grid-cell align-self-middle
+                  style="grid-area: c">
+      <img src="/aurelia-logo.svg"
+           style="width:80%">
+    </ux-grid-cell>
+    <ux-grid-cell style="grid-area: a">
+      <section class="todoapp">
+        <header id="header">
+
+          <!-- <todo-add></todo-add> -->
+        </header>
+        <todo-list todos.bind='visibleTodos'
+                   if.bind='visibleTodos.length'></todo-list>
+        <todo-footer filter.bind='filter'
+                     visibility-callback.call='filterChanged($event)'></todo-footer>
+      </section>
+    </ux-grid-cell>
+  </ux-grid>
+</template>

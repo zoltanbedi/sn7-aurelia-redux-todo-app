@@ -4,8 +4,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const project = require('./aurelia_project/aurelia.json');
 const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
-const { optimize: { CommonsChunkPlugin }, ProvidePlugin } = require('webpack');
-const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
+const { ProvidePlugin } = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // config helpers:
 const ensureArray = (config) => config && (Array.isArray(config) ? config : [config]) || [];
@@ -24,15 +24,16 @@ const cssRules = [
   { loader: 'css-loader' },
 ];
 
-module.exports = ({ production, server, extractCss, coverage } = {}) => ({
+module.exports = ({production, server, extractCss, coverage, analyze} = {}) => ({
   resolve: {
     extensions: ['.ts', '.js'],
-    modules: [srcDir, 'node_modules']
+    modules: [srcDir, 'node_modules'],
   },
   entry: {
     app: ['aurelia-bootstrapper'],
     vendor: ['bluebird'],
   },
+  mode: production ? 'production' : 'development',
   output: {
     path: outDir,
     publicPath: baseUrl,
@@ -40,39 +41,32 @@ module.exports = ({ production, server, extractCss, coverage } = {}) => ({
     sourceMapFilename: production ? '[name].[chunkhash].bundle.map' : '[name].[hash].bundle.map',
     chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js'
   },
-  devServer: {
-    contentBase: staticDir,
-    // serve index.html for all 404 (required for push-state)
-    historyApiFallback: true
+  performance: { hints: false },
+  serve: {
+    content: staticDir,
   },
+  devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
   module: {
     rules: [
       // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
       // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
       {
-        test: /\.(css|scss)$/i,
+        test: /\.css$/i,
         issuer: [{ not: [{ test: /\.html$/i }] }],
         use: extractCss ? ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: cssRules,
+          use: cssRules
         }) : ['style-loader', ...cssRules],
-        exclude: /aurelia-ux/
-      },
-      {
-        test: /\.(css|scss)$/i,
-        issuer: [{ test: /\.html$/i }],
-        // CSS required in templates cannot be extracted safely
-        // because Aurelia would try to require it again in runtime
-        use: cssRules,
-        exclude: /aurelia-ux/
       },
       {
         test: /\.css$/i,
-        loader: 'raw-loader',
-        include: /aurelia-ux/,
+        issuer: [{ test: /\.html$/i }],
+        // CSS required in templates cannot be extracted safely
+        // because Aurelia would try to require it again in runtime
+        use: cssRules
       },
       { test: /\.html$/i, loader: 'html-loader' },
-      { test: /\.ts$/i, loader: 'awesome-typescript-loader', exclude: nodeModulesDir },
+      { test: /\.tsx?$/, loader: "ts-loader" },
       { test: /\.json$/i, loader: 'json-loader' },
       // use Bluebird as the global Promise implementation:
       { test: /[\/\\]node_modules[\/\\]bluebird[\/\\].+\.js$/, loader: 'expose-loader?Promise' },
@@ -95,26 +89,8 @@ module.exports = ({ production, server, extractCss, coverage } = {}) => ({
       'Promise': 'bluebird'
     }),
     new ModuleDependenciesPlugin({
-      'aurelia-testing': ['./compile-spy', './view-spy'],
-      'aurelia-ux': [
-        'aurelia-ux/button/ux-button-theme.css',
-        'aurelia-ux/input/ux-input-theme.css',
-        'aurelia-ux/form/ux-form-theme.css',
-        'aurelia-ux/form/ux-field-theme.css',
-        'aurelia-ux/button/ux-button-theme.css',
-        'aurelia-ux/checkbox/ux-checkbox-theme.css',
-        'aurelia-ux/chip-input/ux-chip-theme.css',
-        'aurelia-ux/chip-input/ux-chip-input-theme.css',
-        'aurelia-ux/chip-input/ux-tag-theme.css',
-        'aurelia-ux/icons/ux-icon-theme.css',
-        'aurelia-ux/input-info/ux-input-info-theme.css',
-        'aurelia-ux/textarea/ux-textarea-theme.css',
-        'aurelia-ux/list/ux-list-theme.css',
-        'aurelia-ux/list/ux-list-item-theme.css'
-      ]
+      'aurelia-testing': [ './compile-spy', './view-spy' ]
     }),
-    new TsConfigPathsPlugin(),
-    new CheckerPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.ejs',
       metadata: {
@@ -126,11 +102,8 @@ module.exports = ({ production, server, extractCss, coverage } = {}) => ({
       filename: production ? '[contenthash].css' : '[id].css',
       allChunks: true
     })),
-    ...when(production, new CommonsChunkPlugin({
-      name: ['common']
-    })),
     ...when(production, new CopyWebpackPlugin([
-      { from: 'static/favicon-32x32.png', to: 'favicon-32x32.png' }
-    ]))
+      { from: 'static/favicon.ico', to: 'favicon.ico' }])),
+    ...when(analyze, new BundleAnalyzerPlugin())
   ]
 });
