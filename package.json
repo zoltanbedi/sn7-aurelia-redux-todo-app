@@ -8,9 +8,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@aurelia-ux/components": "^0.10.0",
-    "@aurelia-ux/core": "^0.10.0",
-    "@aurelia-ux/icons": "^0.10.0",
+    "@aurelia-ux/components": "^0.10.1",
+    "@aurelia-ux/core": "^0.10.1",
+    "@aurelia-ux/icons": "^0.10.1",
     "@sensenet/authentication-jwt": "^1.0.0",
     "@sensenet/client-core": "^1.0.2",
     "@sensenet/redux": "^4.0.1",

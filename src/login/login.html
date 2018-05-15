@@ -1,32 +1,29 @@
 <template>
-  <ux-grid fluid
-           columns.one-time="6"
-           style="grid-template-areas:'. . b c . .''. . a a . .'; height: 100vh;">
-    <ux-grid-cell align-self-middle
-                  style="grid-area: b">
-      <img src="/sensenetlogo.png"
-           style="width:80%">
-    </ux-grid-cell>
-    <ux-grid-cell align-self-middle
-                  style="grid-area: c">
-      <img src="/aurelia-logo.svg"
-           style="width:80%">
-    </ux-grid-cell>
-    <ux-grid-cell style="grid-area: a">
-      <ux-form class="fs-form fs-form-full">
-        <ux-field label="Username">
-          <ux-input placeholder="BuiltIn\Administrator"
-                    value.bind="userName"></ux-input>
-        </ux-field>
+  <ux-form class="fs-form fs-form-full">
+    <ux-field label="Username">
+      <ux-input placeholder="BuiltIn\Administrator"
+                readonly.bind="loginState === 'Pending'"
+                value.bind="userName">
+      </ux-input>
+      <ux-input-info></ux-input-info>
+    </ux-field>
 
-        <ux-field label="Password">
-          <ux-input type="password"
-                    value.bind="password"></ux-input>
-        </ux-field>
+    <ux-field label="Password">
+      <ux-input type="password"
+                value.bind="password"
+                readonly.bind="loginState === 'Pending'">
+      </ux-input>
+      <ux-input-info></ux-input-info>
+    </ux-field>
 
-        <ux-button click.delegate="submit()">Submit</ux-button>
+    <ux-button click.delegate="submit()">Submit</ux-button>
+    <ux-button if.bind="loginState === 'Pending'"
+               theme.bind="{background:'#E0F7FA'}">
+      <ux-icon>
+        <img style="width: 24px;"
+             src="/loader.svg">
+      </ux-icon>
+    </ux-button>
 
-      </ux-form>
-    </ux-grid-cell>
-  </ux-grid>
+  </ux-form>
 </template>

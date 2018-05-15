@@ -2,142 +2,142 @@
 # yarn lockfile v1
 
 
-"@aurelia-ux/button@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/button/-/button-0.10.0.tgz#365318b668956525f7b8c9329d6ec75d8c8fb0a8"
+"@aurelia-ux/button@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/button/-/button-0.10.1.tgz#1561c400f05fbb2363cf0d5b22a86c29bd347da8"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/card@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/card/-/card-0.10.0.tgz#ebb6eb11dbbc363e8d07920da9bf21af6b26cef1"
+"@aurelia-ux/card@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/card/-/card-0.10.1.tgz#cb5bec9afff879c1b142237de5dfade22b25a575"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/checkbox@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/checkbox/-/checkbox-0.10.0.tgz#59d2c9f81f20a8900f04e031395d487e043d5541"
+"@aurelia-ux/checkbox@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/checkbox/-/checkbox-0.10.1.tgz#9f6235939a4100d25459563fda0a33e334f69ccf"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/chip-input@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/chip-input/-/chip-input-0.10.0.tgz#53926b4aebd56e0d193a7d5299064932fe33a52e"
+"@aurelia-ux/chip-input@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/chip-input/-/chip-input-0.10.1.tgz#04aab2c75b1fe2d7e5b4bafeafe4ff423f989567"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/components@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/components/-/components-0.10.0.tgz#92fdb93dcedc949ad550c386f3559204d7128780"
+"@aurelia-ux/components@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/components/-/components-0.10.1.tgz#219e6ee67380c270d1dea62c8ffc403f3299a2ef"
   dependencies:
-    "@aurelia-ux/button" "^0.10.0"
-    "@aurelia-ux/card" "^0.10.0"
-    "@aurelia-ux/checkbox" "^0.10.0"
-    "@aurelia-ux/chip-input" "^0.10.0"
-    "@aurelia-ux/core" "^0.10.0"
-    "@aurelia-ux/datepicker" "^0.10.0"
-    "@aurelia-ux/form" "^0.10.0"
-    "@aurelia-ux/grid" "^0.10.0"
-    "@aurelia-ux/input" "^0.10.0"
-    "@aurelia-ux/input-info" "^0.10.0"
-    "@aurelia-ux/list" "^0.10.0"
-    "@aurelia-ux/radio" "^0.10.0"
-    "@aurelia-ux/select" "^0.10.0"
-    "@aurelia-ux/switch" "^0.10.0"
-    "@aurelia-ux/textarea" "^0.10.0"
+    "@aurelia-ux/button" "^0.10.1"
+    "@aurelia-ux/card" "^0.10.1"
+    "@aurelia-ux/checkbox" "^0.10.1"
+    "@aurelia-ux/chip-input" "^0.10.1"
+    "@aurelia-ux/core" "^0.10.1"
+    "@aurelia-ux/datepicker" "^0.10.1"
+    "@aurelia-ux/form" "^0.10.1"
+    "@aurelia-ux/grid" "^0.10.1"
+    "@aurelia-ux/input" "^0.10.1"
+    "@aurelia-ux/input-info" "^0.10.1"
+    "@aurelia-ux/list" "^0.10.1"
+    "@aurelia-ux/radio" "^0.10.1"
+    "@aurelia-ux/select" "^0.10.1"
+    "@aurelia-ux/switch" "^0.10.1"
+    "@aurelia-ux/textarea" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/core@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/core/-/core-0.10.0.tgz#498e1654967314f0ff21527285f27217f20f83ec"
+"@aurelia-ux/core@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/core/-/core-0.10.1.tgz#2cb4efe30f704dfaf3a57f38f88d3023fb7872f9"
   dependencies:
     aurelia-binding "^1.7.1"
     aurelia-framework "^1.0.0"
     aurelia-templating-resources "^1.6.0"
 
-"@aurelia-ux/datepicker@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/datepicker/-/datepicker-0.10.0.tgz#8261f6fab9f50bcb40139a52afb258f0db730ce1"
+"@aurelia-ux/datepicker@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/datepicker/-/datepicker-0.10.1.tgz#cf5ac0c0c683299f7b842f183f7fb57bfbb6f853"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
     moment "^2.18.1"
 
-"@aurelia-ux/form@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/form/-/form-0.10.0.tgz#08d248b3223ac1033051a657b21bd9f88dba5ae2"
+"@aurelia-ux/form@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/form/-/form-0.10.1.tgz#4dc4ae5f43930aa118fc7237ec023278afb0ae65"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/grid@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/grid/-/grid-0.10.0.tgz#f9590341067a7cf0427d3e7574b6ce47be8911e5"
+"@aurelia-ux/grid@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/grid/-/grid-0.10.1.tgz#a3ca4aa01637c02c8ea96131fef8359c78fb3424"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/icons@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/icons/-/icons-0.10.0.tgz#1d0a88115e10666df021520dcb6fd845478efb94"
+"@aurelia-ux/icons@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/icons/-/icons-0.10.1.tgz#386cf9852ff05f0ea91685534b5b287972c07f78"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
-    aurelia-framework "^1.0.0"
-    moment "^2.18.1"
-
-"@aurelia-ux/input-info@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/input-info/-/input-info-0.10.0.tgz#c989076ff941d75847e149608622979b15a06cce"
-  dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
     moment "^2.18.1"
 
-"@aurelia-ux/input@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/input/-/input-0.10.0.tgz#769789f573a9dcc04d52df959b5c8c90d873ec0f"
+"@aurelia-ux/input-info@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/input-info/-/input-info-0.10.1.tgz#2713be7b918c1b0141a257e965e1bb554e8830eb"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
-    aurelia-framework "^1.0.0"
-
-"@aurelia-ux/list@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/list/-/list-0.10.0.tgz#aca4cd6382d1cbe31198422a21eca871bde64934"
-  dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
     moment "^2.18.1"
 
-"@aurelia-ux/radio@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/radio/-/radio-0.10.0.tgz#d0deee8cd2f598082de0d85dd8a78707ea345f6c"
+"@aurelia-ux/input@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/input/-/input-0.10.1.tgz#f97987cd8de1fa059c71f53cd6cbc7ab593fa282"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/select@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/select/-/select-0.10.0.tgz#ea0b514c602520499cc8769e7cefc6a48b4474f6"
+"@aurelia-ux/list@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/list/-/list-0.10.1.tgz#92f81ed5e343e1a7845d9270436142fa28784756"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
+    aurelia-framework "^1.0.0"
+    moment "^2.18.1"
+
+"@aurelia-ux/radio@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/radio/-/radio-0.10.1.tgz#3e581556d37ca1dd5f4809d0b5c3804381713cfc"
+  dependencies:
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/switch@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/switch/-/switch-0.10.0.tgz#c7315cab063a7c84198df6cd41d393e4542b1d69"
+"@aurelia-ux/select@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/select/-/select-0.10.1.tgz#39f6c3230a97c7ba1c3abfb148894a20ba671a9f"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
 
-"@aurelia-ux/textarea@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@aurelia-ux/textarea/-/textarea-0.10.0.tgz#8390b32ff329a6c8c51929c4417f9101924993ad"
+"@aurelia-ux/switch@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/switch/-/switch-0.10.1.tgz#2f787004abd8370a5da7095f1f824d1ceb2bb31e"
   dependencies:
-    "@aurelia-ux/core" "^0.10.0"
+    "@aurelia-ux/core" "^0.10.1"
+    aurelia-framework "^1.0.0"
+
+"@aurelia-ux/textarea@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@aurelia-ux/textarea/-/textarea-0.10.1.tgz#12dee513e866a2c2d504dc6dbcfa209604d7fb3f"
+  dependencies:
+    "@aurelia-ux/core" "^0.10.1"
     aurelia-framework "^1.0.0"
     moment "^2.18.1"
 

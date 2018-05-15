@@ -1,5 +1,28 @@
 <template>
-  <div class="container">
-    <router-view></router-view>
-  </div>
+  <ux-grid fluid
+           columns.one-time="6"
+           style="grid-template-areas:'. . . . . logout''. . b c . .''. . a a . .'; height: 100vh;grid-template-rows: 40px;">
+    <ux-grid-cell style="grid-area: logout">
+      <ux-button click.delegate="logout()"
+                 if.bind="isAuthenticated">
+        <ux-icon icon="exit_to_app"></ux-icon>Logout
+      </ux-button>
+    </ux-grid-cell>
+    <ux-grid-cell align-self-middle
+                  style="grid-area: b">
+      <img src="/sensenetlogo.png"
+           style="width:80%">
+    </ux-grid-cell>
+    <ux-grid-cell align-self-middle
+                  style="grid-area: c">
+      <img src="/aurelia-logo.svg"
+           style="width:80%">
+    </ux-grid-cell>
+    <ux-grid-cell style="grid-area: a">
+      <div class="container">
+        <router-view></router-view>
+      </div>
+    </ux-grid-cell>
+  </ux-grid>
+
 </template>

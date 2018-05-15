@@ -1,8 +1,16 @@
 <template>
   <li class.bind='todoClass'>
     <div class="view">
-      <input class="toggle" type="checkbox" checked.bind='todo.completed' change.delegate='complete()'>
-      <div class="delete-todo"><a click.delegate="delete()"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+      <ux-checkbox class="toggle"
+                   checked.bind='todo.completed'
+                   change.delegate='complete()'></ux-checkbox>
+
+      <ux-button type.one-time="icon"
+                 size.one-time="'medium'"
+                 click.delegate="delete()"
+                 class="delete-todo">
+        <ux-icon icon="delete"></ux-icon>
+      </ux-button>
       <label>${todo.DisplayName}</label>
     </div>
   </li>

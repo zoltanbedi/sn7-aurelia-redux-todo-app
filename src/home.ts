@@ -5,14 +5,12 @@ import { autoinject } from 'aurelia-framework';
 @autoinject
 export class Home {
   filter: any;
-  message: string;
 
-  constructor(private snService: Repository) {
-    this.message = 'Hello ' + snService.authentication.currentUser;
+  constructor(private repository: Repository) {
   }
 
   attached() {
-
+    this.repository.authentication.currentUser.subscribe((a) => console.log(a));
   }
 
   getOptionObject() {
