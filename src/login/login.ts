@@ -1,26 +1,21 @@
-import { LoginState, Repository } from '@sensenet/client-core';
 import { Actions, Reducers } from '@sensenet/redux';
-import { autoinject, observable } from 'aurelia-framework';
-import { Router } from 'aurelia-router';
+import { autoinject } from 'aurelia-framework';
 import { ValidationController, ValidationControllerFactory, ValidationRules } from 'aurelia-validation';
+import { AuthService } from 'auth-service';
+import { AureliaUXFormRenderer } from 'resources/aurelia-ux-form';
 import { TodoStore } from 'store';
 
 @autoinject
 export class Login {
-  @observable loginState: LoginState;
   controller: ValidationController;
   password: string = '';
   userName: string = '';
 
   constructor(controllerFactory: ValidationControllerFactory,
-    private router: Router,
-    private repository: Repository,
-    private store: TodoStore<{ sensenet: Reducers.SensenetStateType }>) {
+    private readonly auth: AuthService,
+    private readonly store: TodoStore<{ sensenet: Reducers.SensenetStateType }>) {
     this.controller = controllerFactory.createForCurrentScope();
-  }
-
-  attached() {
-    this.store.subscribe(() => this.loginState = (this.store.getState().sensenet.session as { loginState: LoginState }).loginState);
+    this.controller.addRenderer(new AureliaUXFormRenderer());
   }
 
   submit() {
@@ -31,13 +26,6 @@ export class Login {
       this.store.dispatch(Actions.userLogin(this.userName, this.password));
     });
   }
-
-  loginStateChanged(newState: LoginState) {
-    if (newState === LoginState.Authenticated) {
-      this.router.navigate(this.router.generate('home'));
-    }
-  }
-
 }
 
 ValidationRules

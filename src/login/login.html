@@ -2,28 +2,29 @@
   <ux-form class="fs-form fs-form-full">
     <ux-field label="Username">
       <ux-input placeholder="BuiltIn\Administrator"
-                readonly.bind="loginState === 'Pending'"
-                value.bind="userName">
+                readonly.bind="auth.loginState === 'Pending'"
+                value.bind="userName & validate">
       </ux-input>
       <ux-input-info></ux-input-info>
     </ux-field>
 
     <ux-field label="Password">
       <ux-input type="password"
-                value.bind="password"
-                readonly.bind="loginState === 'Pending'">
+                value.bind="password & validate"
+                readonly.bind="auth.loginState === 'Pending'">
       </ux-input>
       <ux-input-info></ux-input-info>
     </ux-field>
+    <div style="margin-top: 16px;">
+      <ux-button if.bind="auth.loginState === 'Pending'"
+                 theme.bind="{background:'#E0F7FA'}">
+        <ux-icon>
+          <img style="width: 24px;"
+               src="/loader.svg">
+        </ux-icon>
+      </ux-button>
+      <ux-button else click.delegate="submit()">Submit</ux-button>
 
-    <ux-button click.delegate="submit()">Submit</ux-button>
-    <ux-button if.bind="loginState === 'Pending'"
-               theme.bind="{background:'#E0F7FA'}">
-      <ux-icon>
-        <img style="width: 24px;"
-             src="/loader.svg">
-      </ux-icon>
-    </ux-button>
-
+    </div>
   </ux-form>
 </template>

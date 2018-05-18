@@ -4,7 +4,7 @@
            style="grid-template-areas:'. . . . . logout''. . b c . .''. . a a . .'; height: 100vh;grid-template-rows: 40px;">
     <ux-grid-cell style="grid-area: logout">
       <ux-button click.delegate="logout()"
-                 if.bind="isAuthenticated">
+                 if.bind="auth.isAuthenticated">
         <ux-icon icon="exit_to_app"></ux-icon>Logout
       </ux-button>
     </ux-grid-cell>
