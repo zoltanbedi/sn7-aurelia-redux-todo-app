@@ -24,12 +24,8 @@ export function configure(aurelia: Aurelia) {
 
   const repository = new Repository({
     repositoryUrl: 'https://dmsservice.demo.sensenet.com',
-    oDataToken: 'OData.svc',
-    sessionLifetime: 'expiration',
-    defaultSelect: ['DisplayName', 'Icon'],
+    defaultSelect: 'all',
     requiredSelect: ['Id', 'Type', 'Path', 'Name'],
-    defaultMetadata: 'no',
-    defaultInlineCount: 'allpages',
     defaultExpand: [],
     defaultTop: 1000
   });

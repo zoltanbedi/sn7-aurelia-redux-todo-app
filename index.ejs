@@ -21,7 +21,7 @@
       bottom: 20%;
     }
 
-    h1 {
+    h1.title {
       text-align: center;
       bottom: 50%;
       position: fixed;
@@ -31,7 +31,7 @@
 </head>
 
 <body aurelia-app="main">
-  <h1>
+  <h1 class="title">
     <%- htmlWebpackPlugin.options.metadata.title %> is loading</h1>
   <div class="loader">
     <img style="width: 70px;"

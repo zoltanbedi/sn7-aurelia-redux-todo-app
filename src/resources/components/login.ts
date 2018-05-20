@@ -1,8 +1,8 @@
 import { Actions, Reducers } from '@sensenet/redux';
 import { autoinject } from 'aurelia-framework';
 import { ValidationController, ValidationControllerFactory, ValidationRules } from 'aurelia-validation';
-import { AuthService } from 'auth-service';
-import { AureliaUXFormRenderer } from 'resources/aurelia-ux-form';
+import { AureliaUXFormRenderer } from 'resources/renderers/aurelia-ux-form';
+import { AuthService } from 'resources/services/auth-service';
 import { TodoStore } from 'store';
 
 @autoinject

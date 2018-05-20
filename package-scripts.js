@@ -60,7 +60,7 @@ module.exports = {
         }
       },
       server: {
-        default: `webpack-serve ./webpack.config.js`,
+        default: `webpack-serve --content ./static`,
         extractCss: `webpack-dev-server -d --inline --env.server --env.extractCss`,
         hmr: `webpack-dev-server -d --inline --hot --env.server`
       },

@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 
 export const createList = (filter) => {
   const handleToggle = (state, action, filter) => {
-    const { Id, Status } = action.response;
+    const { Id, Status } = action.payload.d;
     const shouldRemove = (
       (Status[0] === 'active' && filter !== 'active' && filter !== 'all') ||
       (Status[0] === 'completed' && filter !== 'completed' && filter !== 'all')
@@ -15,14 +15,23 @@ export const createList = (filter) => {
   const ids = (state = [], action) => {
     switch (action.type) {
       case 'FETCH_CONTENT_SUCCESS':
-        return action.response.result;
+        return action.payload.result;
       case 'CREATE_CONTENT_SUCCESS':
-        return [...state, action.response.result];
+        return [...state, action.payload.d.Id];
       case 'UPDATE_CONTENT_SUCCESS':
         return handleToggle(state, action, filter);
       case 'DELETE_CONTENT_SUCCESS':
-        const index = state.indexOf(action.id);
-        return [...state.slice(0, index), ...state.slice(index + 1)];
+        if (action.payload.d.results.length > 0) {
+          const newIds = [];
+          const deletedIds = action.payload.d.results.map((result) => result.Id);
+          for (const id of state) {
+            if (deletedIds.indexOf(id) === -1) {
+              newIds.push(id);
+            }
+          }
+          return newIds;
+        }
+        break;
       default:
         return state;
     }

@@ -1,0 +1,12 @@
+<template>
+  <h1 class="welcome">Welcome <em>${userName}</em> here is your todo list:</h1>
+  <section class="todoapp">
+    <header id="header">
+      <todo-add></todo-add>
+    </header>
+    <todo-list todos.bind='todos'
+               if.bind='todos.length'></todo-list>
+    <todo-footer filter.bind='filter'
+                 visibility-callback.call='filterChanged($event)'></todo-footer>
+  </section>
+</template>

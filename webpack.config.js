@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const project = require('./aurelia_project/aurelia.json');
 const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
 const { ProvidePlugin } = require('webpack');
@@ -16,7 +16,6 @@ const when = (condition, config, negativeConfig) =>
 const title = 'SN7 Aurelia Redux Todo-app';
 const outDir = path.resolve(__dirname, project.platform.output);
 const srcDir = path.resolve(__dirname, 'src');
-const staticDir = path.resolve(__dirname, 'static');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const baseUrl = '/';
 
@@ -24,7 +23,7 @@ const cssRules = [
   { loader: 'css-loader' },
 ];
 
-module.exports = ({production, server, extractCss, coverage, analyze} = {}) => ({
+module.exports = ({ production, server, extractCss, coverage, analyze } = {}) => ({
   resolve: {
     extensions: ['.ts', '.js'],
     modules: [srcDir, 'node_modules'],
@@ -42,9 +41,6 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
     chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js'
   },
   performance: { hints: false },
-  serve: {
-    content: staticDir,
-  },
   devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
   module: {
     rules: [
@@ -53,10 +49,7 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
       {
         test: /\.css$/i,
         issuer: [{ not: [{ test: /\.html$/i }] }],
-        use: extractCss ? ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: cssRules
-        }) : ['style-loader', ...cssRules],
+        use: ['style-loader', ...cssRules],
       },
       {
         test: /\.css$/i,
@@ -89,7 +82,7 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
       'Promise': 'bluebird'
     }),
     new ModuleDependenciesPlugin({
-      'aurelia-testing': [ './compile-spy', './view-spy' ]
+      'aurelia-testing': ['./compile-spy', './view-spy']
     }),
     new HtmlWebpackPlugin({
       template: 'index.ejs',
@@ -98,12 +91,15 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
         title, server, baseUrl
       }
     }),
-    ...when(extractCss, new ExtractTextPlugin({
-      filename: production ? '[contenthash].css' : '[id].css',
+    ...when(extractCss, new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: "[id].css",
       allChunks: true
     })),
     ...when(production, new CopyWebpackPlugin([
-      { from: 'static/favicon.ico', to: 'favicon.ico' }])),
+      { from: 'static/favicon.ico', to: 'favicon.ico' },
+      { from: 'static/**.*', ignore: ['*.ico', '*.css'], flatten: true }
+    ])),
     ...when(analyze, new BundleAnalyzerPlugin())
   ]
 });

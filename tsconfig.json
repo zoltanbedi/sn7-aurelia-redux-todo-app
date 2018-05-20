@@ -18,13 +18,5 @@
   "exclude": [
     "node_modules",
     "aurelia_project"
-  ],
-  "filesGlob": [
-    "./src/**/*.ts",
-    "./test/**/*.ts",
-    "./custom_typings/**/*.d.ts"
-  ],
-  "atom": {
-    "rewriteTsconfig": false
-  }
+  ]
 }

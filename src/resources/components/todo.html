@@ -1,0 +1,18 @@
+<template>
+  <li class.bind='isCompleted ? "completed" : ""'>
+    <div style="display: grid; grid-template-columns: 25px auto 25px; padding: 10px;">
+      <div>
+        <ux-checkbox checked.bind="isCompleted"
+                     change.delegate='complete()'></ux-checkbox>
+      </div>
+      <div>
+        <label>${todo.DisplayName}</label>
+      </div>
+      <div>
+        <ux-icon click.delegate="delete()"
+                 class="destroy"
+                 icon="delete"></ux-icon>
+      </div>
+    </div>
+  </li>
+</template>

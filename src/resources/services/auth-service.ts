@@ -11,7 +11,6 @@ export class AuthService {
   constructor(private readonly repository: Repository,
     private readonly router: Router) {
     this.repository.authentication.state.subscribe(state => {
-      console.log(state);
       this.loginState = state;
     });
     if (!this.loginState) {
