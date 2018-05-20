@@ -1,4 +1,4 @@
-const {series, crossEnv, concurrent, rimraf} = require('nps-utils')
+const { series, crossEnv, concurrent, rimraf } = require('nps-utils')
 
 module.exports = {
   scripts: {
@@ -13,11 +13,9 @@ module.exports = {
         accept: 'jest -u',
         watch: 'jest --watch',
       },
-
-
       lint: {
-        default: 'eslint src',
-        fix: 'eslint --fix'
+        default: 'tslint --project ./',
+        fix: 'tslint --project ./ --fix'
       },
       all: concurrent({
         jest: 'nps test.jest',
@@ -60,9 +58,7 @@ module.exports = {
         }
       },
       server: {
-        default: `webpack-serve --content ./static`,
-        extractCss: `webpack-dev-server -d --inline --env.server --env.extractCss`,
-        hmr: `webpack-dev-server -d --inline --hot --env.server`
+        default: `webpack-serve --content ./static`
       },
     },
     serve: 'http-server dist --cors',
