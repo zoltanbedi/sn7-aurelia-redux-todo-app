@@ -17,11 +17,12 @@ const title = 'SN7 Aurelia Redux Todo-app';
 const outDir = path.resolve(__dirname, project.platform.output);
 const srcDir = path.resolve(__dirname, 'src');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
-const baseUrl = '/';
 
 const cssRules = [
   { loader: 'css-loader' },
 ];
+
+const baseUrl = (production) => production ? '/sn7-container' : '/';
 
 module.exports = ({ production, server, extractCss, coverage, analyze } = {}) => ({
   resolve: {
@@ -35,7 +36,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze } = {}) =>
   mode: production ? 'production' : 'development',
   output: {
     path: outDir,
-    publicPath: baseUrl,
+    publicPath: baseUrl(production),
     filename: production ? '[name].[chunkhash].bundle.js' : '[name].[hash].bundle.js',
     sourceMapFilename: production ? '[name].[chunkhash].bundle.map' : '[name].[hash].bundle.map',
     chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js'
@@ -88,7 +89,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze } = {}) =>
       template: 'index.ejs',
       metadata: {
         // available in index.ejs //
-        title, server, baseUrl
+        title, server, baseUrl: baseUrl(production)
       }
     }),
     ...when(extractCss, new MiniCssExtractPlugin({
