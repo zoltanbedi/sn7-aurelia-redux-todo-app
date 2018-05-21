@@ -1,12 +1,21 @@
 {
-  "name": "todo-sn-redux-aurelia",
-  "description": "An Aurelia client application.",
-  "version": "0.1.0",
+  "name": "sn7-aurelia-redux-todo-app",
+  "description": "Todo app with Aurelia and Redux built upon Sense/Net ECM.",
+  "version": "2.0.0",
   "repository": {
-    "type": "???",
-    "url": "???"
+    "type": "git",
+    "url": "git+ssh://git@github.com:B3zo0/sn7-aurelia-redux-todo-app.git"
   },
+  "author": "Zoltán Bedi <zoltan.bedi@sensenet.com>",
   "license": "MIT",
+  "keywords": [
+    "aurelia",
+    "redux",
+    "todo",
+    "sensenet",
+    "webpack"
+  ],
+  "homepage": "https://sn7aureliatodo.blob.core.windows.net/sn7-container",
   "dependencies": {
     "@aurelia-ux/components": "^0.10.1",
     "@aurelia-ux/core": "^0.10.1",
@@ -21,7 +30,6 @@
     "bluebird": "^3.5.1",
     "reset-css": "^3.0.0"
   },
-  "peerDependencies": {},
   "devDependencies": {
     "@types/bluebird": "^3.5.20",
     "@types/jest": "^22.2.0",
@@ -107,6 +115,5 @@
   "scripts": {
     "start": "nps",
     "test": "nps test"
-  },
-  "main": "dist/app.bundle.js"
+  }
 }
