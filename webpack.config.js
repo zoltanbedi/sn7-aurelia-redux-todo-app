@@ -22,7 +22,7 @@ const cssRules = [
   { loader: 'css-loader' },
 ];
 
-const baseUrl = (production) => production ? '/sn7-container' : '/';
+const baseUrl = (production) => production ? '/sn7-container/' : '/';
 
 module.exports = ({ production, server, extractCss, coverage, analyze } = {}) => ({
   resolve: {
